@@ -16,7 +16,7 @@ export default function HomeScreen() {
         <Text className="text-3xl font-pblack">Natan Tesfaye</Text>
         <Text className="text-2xl">kaleb</Text>
         <StatusBar style="auto" />
-        <Link href="/" style={{ color: "blue" }}>
+        <Link href="/profile" style={{ color: "blue" }}>
           Go to Profile
         </Link>
       </View>
