@@ -7,19 +7,20 @@ import { ThemedView } from "@/components/ThemedView";
 import { StatusBar } from "expo-status-bar";
 import { Text } from "react-native";
 import { Link } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
-    <>
+    <SafeAreaView className="flex-1">
       <View className="flex-1 items-center justify-center bg-white">
         <Text className="text-3xl font-pblack">Natan Tesfaye</Text>
         <Text className="text-2xl">kaleb</Text>
         <StatusBar style="auto" />
-        <Link href="" style={{ color: "blue" }}>
-          Go to profile
+        <Link href="/" style={{ color: "blue" }}>
+          Go to Profile
         </Link>
       </View>
-    </>
+    </SafeAreaView>
 
     // <ParallaxScrollView
     //   headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
