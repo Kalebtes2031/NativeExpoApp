@@ -5,6 +5,7 @@ import { View, Text, ScrollView, Dimensions, Alert, Image } from "react-native";
 import { images } from "../../constants";
 import FormField from "../../components/FormField";
 import CustomBotton from "../../components/CustomButton";
+import { createUser } from "../../lib/appwrite";
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -15,7 +16,25 @@ const SignUp = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const submit = () => {};
+  const submit = async () => {
+    if (form.username === "" || form.email === "" || form.password === "") {
+      Alert.alert("Error", "Please fill in all fields");
+    }
+
+    setIsSubmitting(true);
+    try {
+      const result = await createUser(form.email, form.password, form.username);
+      // setUser(result);
+      // setIsLogged(true);
+
+      router.replace("/index");
+    } catch (error) {
+      Alert.alert("Error:(", error.message);
+      console.error("this is the error")
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
@@ -25,6 +44,7 @@ const SignUp = () => {
           //   minHeight: Dimensions.get("window").height - 100,
           // }}
         >
+        
           <Image
             source={images.logo}
             resizeMode="contain"
@@ -34,7 +54,6 @@ const SignUp = () => {
           <Text className="text-2xl font-semibold text-white mt-10 font-psemibold">
             Sign Up to Kabth
           </Text>
-
           <FormField
             title="Username"
             value={form.username}
