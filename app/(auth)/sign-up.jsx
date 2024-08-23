@@ -27,7 +27,7 @@ const SignUp = () => {
       // setUser(result);
       // setIsLogged(true);
 
-      router.replace("/index");
+      router.replace("/home");
     } catch (error) {
       Alert.alert("Error:(", error.message);
       console.error("this is the error")
