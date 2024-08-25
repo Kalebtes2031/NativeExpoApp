@@ -47,14 +47,15 @@ export default function RootLayout() {
 
   return (
     <GlobalProvider> 
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      {/* <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}> */}
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
           <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="search/[query]" options={{ headerShown: false }} />
         </Stack>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </GlobalProvider>
   );
 }
