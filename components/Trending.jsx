@@ -35,7 +35,7 @@ const TrendingItem = ({ activeItem, item }) => {
     console.log("This is the videoURL:", item.video); // Log URL when play button is pressed
     setPlay(true);
   };
-console.log("this is active: ",activeItem)
+// console.log("this is active: ",activeItem)
   return (
     <Animatable.View
       className="mr-5"

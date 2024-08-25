@@ -11,51 +11,54 @@ const GlobalProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-    // getCurrentUser()
-    //   .then((res) => {
-    //     if (res) {
-    //       setIsLogged(true);
-    //       setUser(res);
-    //     } else {
-    //       setIsLogged(false);
-    //       setUser(null);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
-    
-    useEffect(() => {
-      const loadUser = async () => {
-        try {
-          // Retrieve user data from AsyncStorage
-          const savedUser = await AsyncStorage.getItem('user');
-          if (savedUser) {
-            setUser(JSON.parse(savedUser));
-            setIsLogged(true);
-          } else {
-            const res = await getCurrentUser();
-            if (res) {
-              setUser(res);
-              setIsLogged(true);
-              await AsyncStorage.setItem('user', JSON.stringify(res));
-            } else {
-              setIsLogged(false);
-              setUser(null);
-            }
-          }
-        } catch (error) {
-          console.error("Failed to load user", error);
-        } finally {
-          setLoading(false);
+  useEffect(() => {
+    getCurrentUser()
+      .then((res) => { 
+        if (res) {
+          setIsLogged(true);
+          setUser(res);
+        } else {
+          setIsLogged(false);
+          setUser(null);
         }
-      };
-      loadUser();
+      })
+      .catch((error) => {
+        console.log("hi error:",error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
     }, []);
+
+    // useEffect(() => {
+    //   const loadUser = async () => {
+    //     try {
+    //       const savedUser = await AsyncStorage.getItem('user');
+    //       console.log('Saved User:', savedUser); // Log the retrieved value
+    //       if (savedUser) {
+    //         setUser(JSON.parse(savedUser));
+    //         setIsLogged(true);
+    //       } else {
+    //         const res = await getCurrentUser();
+    //         console.log('Current User:', res); // Log the result from getCurrentUser
+    //         if (res) {
+    //           setUser(res);
+    //           setIsLogged(true);
+    //           await AsyncStorage.setItem('user', JSON.stringify(res));
+    //         } else {
+    //           setIsLogged(false);
+    //           setUser(null);
+    //         }
+    //       }
+    //     } catch (error) {
+    //       console.error("Failed to load user", error);
+    //     } finally {
+    //       setLoading(false);
+    //     }
+    //   };
+      
+    //   loadUser();
+    // }, []);
 
     const logout = async () => {
       try {
@@ -66,6 +69,7 @@ const GlobalProvider = ({ children }) => {
         console.error("Failed to log out", error);
       }
     };
+    console.log("i am the user::", user)
   
   return (
     <GlobalContext.Provider

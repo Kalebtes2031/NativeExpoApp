@@ -6,7 +6,9 @@ import { icons } from "../../constants";
 import useAppwrite from "../../lib/useAppwrite";
 import { getUserPosts, signOut } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
-import { EmptyState, InfoBox, VideoCard } from "../../components";
+import InfoBox from "../../components/InfoBox";
+import EmptyState from "../../components/EmptyState";
+import VideoCard from "../../components/VideoCard";
 
 const Profile = () => {
   const { user, setUser, setIsLogged } = useGlobalContext();
@@ -25,15 +27,7 @@ const Profile = () => {
       <FlatList
         data={posts}
         keyExtractor={(item) => item.$id}
-        renderItem={({ item }) => (
-          <VideoCard
-            title={item.title}
-            thumbnail={item.thumbnail}
-            video={item.video}
-            creator={item.creator.username}
-            avatar={item.creator.avatar}
-          />
-        )}
+        renderItem={({ item }) => <VideoCard video={item} />}
         ListEmptyComponent={() => (
           <EmptyState
             title="No Videos Found"

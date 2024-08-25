@@ -6,10 +6,15 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../constants";
 import CustomButton from "../components/CustomButton";
 import { useGlobalContext } from "../context/GlobalProvider";
+import { useEffect } from "react";
 
 const Welcome = () => {
   const {loading, isLogged} = useGlobalContext();
-
+  // useEffect(() => {
+  //   if (!loading && isLogged) {
+  //     router.push("/home");
+  //   }
+  // }, [loading, isLogged, router]);
   if (!loading && isLogged) return <Redirect href="/home" />;
     return (
     <SafeAreaView className="bg-primary h-full">
